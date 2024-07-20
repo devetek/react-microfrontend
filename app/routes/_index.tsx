@@ -3,8 +3,11 @@ import { DarkThemeToggle } from "flowbite-react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Terpusat Micro Frontend" },
+    {
+      name: "description",
+      content: "Welcome to Terpusat Micro Frontend for dummy!",
+    },
   ];
 };
 

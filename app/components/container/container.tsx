@@ -2,12 +2,6 @@ import { Navbar } from "flowbite-react";
 import { NavLink } from "@remix-run/react";
 
 export default function Container() {
-  // const { pathname } = useLocation();
-
-  // console.log("pathpathpath");
-  // console.log(pathname);
-  // console.log("pathpathpath");
-
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="/" as={NavLink} to="/">
