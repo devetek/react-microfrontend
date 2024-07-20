@@ -4,6 +4,7 @@ type MicroFrontendProps = {
   // using `interface` is also ok
   name: string;
   host: string;
+  manifest: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   history: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +15,7 @@ type MicroFrontendProps = {
 
 class MicroFrontend extends React.Component<MicroFrontendProps> {
   componentDidMount() {
-    const { name, document } = this.props;
+    const { host, manifest, name, document } = this.props;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const browserWindow: any = window;
 
@@ -29,49 +30,26 @@ class MicroFrontend extends React.Component<MicroFrontendProps> {
       return;
     }
 
-    const aboutAssets = ["http://localhost:4000/assets/index-dZA7QN7T.js"];
-
-    aboutAssets.forEach((item) => {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.crossOrigin = "";
-      script.src = item;
-      script.onload = this.renderMicroFrontend;
-      document.head.appendChild(script);
-    });
-
-    // ======================
     // real implementation
-    // fetch("http://localhost:4000/client-manifest.json")
-    //   .then((res) => res.json())
-    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //   .then((manifests: Record<string, any>) => {
-    //     const keys = Object.keys(manifests);
+    fetch(`${host}${manifest}`)
+      .then((res) => res.json())
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((manifests: Record<string, any>) => {
+        const keys = Object.keys(manifests);
 
-    //     keys.forEach((key: string) => {
-    //       const fileLoad: string = manifests[key].file;
+        keys.forEach((key: string) => {
+          const fileLoad: string = manifests[key].file;
 
-    //       console.log("manifest");
-    //       console.log(fileLoad);
-    //       console.log("manifest");
-
-    //       if (!fileLoad.includes(".css")) {
-    //         const script = document.createElement("script");
-    //         script.id = scriptId;
-    //         script.crossOrigin = "";
-    //         script.src = `http://localhost:4000/${fileLoad}`;
-    //         script.onload = this.renderMicroFrontend;
-    //         document.head.appendChild(script);
-    //       }
-    //     });
-    //   });
-    // ======================
-
-    // ======================
-    // fetch if proxy micro service
-    // fetch("http://localhost:4000/about")
-    //   .then((resp) => resp.text())
-    //   .then((body) => console.log(body));
+          if (fileLoad.includes(".js")) {
+            const script = document.createElement("script");
+            script.id = scriptId;
+            script.crossOrigin = "";
+            script.src = `${host}/${fileLoad}`;
+            script.onload = this.renderMicroFrontend;
+            document.head.appendChild(script);
+          }
+        });
+      });
   }
 
   componentWillUnmount() {
