@@ -55,30 +55,13 @@ class MicroFrontend extends React.Component<MicroFrontendProps> {
   componentWillUnmount() {
     const { name, window } = this.props;
 
-    console.log("unmount service 2");
-    console.log(window[`unmount${name}`]);
-    console.log("unmount service 2");
-
     window[`unmount${name}`] && window[`unmount${name}`](`${name}-container`);
   }
 
   renderMicroFrontend = () => {
-    const { name, window, history } = this.props;
-
-    console.log("historyhistory");
-    console.log(history);
-    console.log(`render${name}`);
-    console.log("historyhistory");
-
-    // if (typeof window?.[`render${name}`] === "undefined") {
-    // window[`render${name}`](`${name}-container`);
-    // }
+    const { name, window } = this.props;
 
     window[`render${name}`] && window[`render${name}`](`${name}-container`);
-
-    console.log("window render microservice");
-    console.log(window);
-    console.log("window render microservice");
   };
 
   render() {
