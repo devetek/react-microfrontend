@@ -12,12 +12,12 @@ export default function Container() {
     <Navbar fluid rounded>
       <Navbar.Brand href="/" as={NavLink} to="/">
         <img
-          src="https://flowbite-react.com/favicon.svg"
+          src="https://ik.imagekit.io/terpusat/tr:h-100,w-100/assets/v1_0_0/logo/terpusat_YecCfAziS.png?ik-sdk-version=react-1.1.0"
           className="mr-3 h-6 sm:h-9"
           alt="Flowbite React Logo"
         />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Flowbite React
+          Terpusat Micro Frontend
         </span>
       </Navbar.Brand>
       <Navbar.Toggle />
