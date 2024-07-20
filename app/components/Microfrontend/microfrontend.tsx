@@ -24,7 +24,7 @@ class MicroFrontend extends React.Component<MicroFrontendProps> {
       browserWindow[`render${name}`] = () => {};
     }
 
-    const scriptId = `micro-frontend-script-${name}`;
+    const scriptId = `terpusat-mfcrpt-${name}`;
     if (document.getElementById(scriptId)) {
       this.renderMicroFrontend();
       return;
